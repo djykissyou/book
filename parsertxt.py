@@ -10,6 +10,7 @@ class ParserBooklist():
     def run(self):
         lastTotal = 1
         bookAttr = {'size': '', 'name': '', 'type': '', 'category': 'root'}
+        categories = []
         with open(self.txtAddr,'r') as books:
             for book in books:
                 bookRegex = re.compile(r'(.*)\[(.*)\]([^\.]+)(\.(\w{3,4})$)?')
