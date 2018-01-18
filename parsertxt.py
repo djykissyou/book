@@ -12,25 +12,25 @@ class ParserBooklist():
         bookAttr = {'size': '', 'name': '', 'type': '', 'category': 'root'}
         with open(self.txtAddr,'r') as books:
             for book in books:
-                bookRegex = re.compile(r'(.*)\[(.)*\](.)+(\.(\w{3,4}))?')
+                bookRegex = re.compile(r'(.*)\[(.*)\]([^\.]+)(\.(\w{3,4})$)?')
                 bookAttrs = bookRegex.search(book.strip())
                 categoryRegex = re.compile(r'\|')
-                categoryTotal = len(re.findall(categoryRegex, bookAttrs[0]))
-                bookAttr['size'] = bookAttrs[1]
-                bookAttr['name'] = bookAttrs[2]
+                categoryTotal = len(re.findall(categoryRegex, bookAttrs.group(1)))
+                bookAttr['size'] = bookAttrs.group(2)
+                bookAttr['name'] = bookAttrs.group(3)
                 if categoryTotal == 1:
-                    if bookAttrs[3]:
-                        bookAttr['category'] = bookAttrs[2]
+                    if bookAttrs.group(4):
+                        bookAttr['category'] = bookAttrs.group(3)
                     else:
                         bookAttr['category'] = 'root'
                 else:
                     if categoryTotal <= lastTotal:
                         categories = self.nowCategory.split('/', categoryTotal - 1)
                         categories.pop()
-                    if bookAttrs[3]:
-                        bookAttr['type'] = bookAttrs[4]
+                    if bookAttrs.group(4):
+                        bookAttr['type'] = bookAttrs.group(5)
                     else:
-                        categories.append(bookAttrs[2])
+                        categories.append(bookAttrs.group(3))
                         bookAttr['type'] = 'category'
                     bookAttr['category'] = '/'.join(categories)
                 self.bookList.append(bookAttr)
