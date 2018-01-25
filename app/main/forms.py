@@ -8,13 +8,13 @@ from manage import photos
 
 #表单
 class CXForm(Form):
-    xingming = TextAreaField(u'姓名', [DataRequired()])
-    shenfenzheng = TextAreaField(u'身份证号', [DataRequired()])
-    kahao = TextAreaField(u'银行卡号', [DataRequired()])
+    xingming = StringField(u'姓名', [DataRequired()])
+    shenfenzheng = StringField(u'身份证号', [DataRequired()])
+    kahao = StringField(u'银行卡号', [DataRequired()])
     banji = SelectField(u'毕业所在班级', choices=[('14w1', u'14微机一班'), ('14w2', u'14微机二班'), ('14w3', u'14微机三班')])
-    xuexiao = TextAreaField(u'当前就读大学', [DataRequired()])
-    zhuanye = TextAreaField(u'大学所学专业', [DataRequired()])
-    yuke = BooleanField(u'是否大学预科')
-    dianhua = TextAreaField(u'联系电话', [DataRequired()])
+    xuexiao = StringField(u'当前就读大学', [DataRequired()])
+    zhuanye = StringField(u'大学所学专业', [DataRequired()])
+    yuke = BooleanField(u'大学预科请在此选项打钩')
+    dianhua = StringField(u'联系电话', [DataRequired()])
 
-    submit = SubmitField('Submit')
+    submit = SubmitField(u'提交')
