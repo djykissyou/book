@@ -34,7 +34,7 @@ class Config:
 
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI') or \
-        'mysql://book:fenjin-99@localhost:3306/book'
+        'mysql://studentinfo:fenjin-99@localhost:3306/studentinfo'
 
 config = {
     'production': ProductionConfig,

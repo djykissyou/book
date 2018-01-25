@@ -5,17 +5,20 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 
 #数据库
-class cximage(db.Model):
-    __tablename__ = 'cximages'
-    id = db.Column(db.Integer,primary_key = True,index=True)
-    intro = db.Column(db.String(140))
-    filename = db.Column(db.String(140),unique=True)
+class student(db.Model):
+    __tablename__ = 'studentinfo'
+    id = db.Column(db.Integer, primary_key = True, index=True, autoincrement=True)
+    xingming = db.Column(db.String(6),unique=True,nullable=False)
+    shenfenzheng = db.Column(db.String(18),unique=True,nullable=False)
+    kahao = db.Column(db.String(20),unique=True,nullable=False)
+    xuexiao = db.Column(db.String(255),nullable=False)
+    dianhua = db.Column(db.String(11), nullable=False)
     time = db.Column(db.DateTime,nullable=False)
     #todo:添加外键关联到用户上，并且设置为索引
     #todo:添加用户表，包含姓名、班级、学号、微信OAuthID、ID
 
     def __repr__(self):
-        return '<cximage {}>'.format(self.intro)
+        return '<student {}>'.format(self.intro)
 
     @property
     def password(self):

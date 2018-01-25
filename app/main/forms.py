@@ -8,9 +8,10 @@ from manage import photos
 
 #表单
 class CXForm(Form):
-    intro = TextAreaField(u'诚信行为介绍', validators=[Required()])
-    photo = FileField(u'诚信图片', validators=[
-        FileRequired(),
-        FileAllowed(['jpg','png','jpeg','gif','mp4'], u'目前仅能上传图片')
-    ])
+    xingming = TextAreaField(u'姓名', validators=[Required()])
+    shenfenzheng = TextAreaField(u'身份证号', validators=[Required()])
+    kahao = TextAreaField(u'银行卡号', validators=[Required()])
+    xuexiao = TextAreaField(u'当前就读大学', validators=[Required()])
+    dianhua = TextAreaField(u'联系电话', validators=[Required()])
+
     submit = SubmitField('Submit')
