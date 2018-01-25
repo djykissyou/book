@@ -1,17 +1,20 @@
 # -*- coding:utf-8 -*-
 
 from flask_wtf import Form
-from wtforms import StringField, SubmitField, TextAreaField, FileField
+from wtforms import StringField, SubmitField, TextAreaField, SelectField, BooleanField
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-from wtforms.validators import Required
+from wtforms.validators import DataRequired
 from manage import photos
 
 #表单
 class CXForm(Form):
-    xingming = TextAreaField(u'姓名', validators=[Required()])
-    shenfenzheng = TextAreaField(u'身份证号', validators=[Required()])
-    kahao = TextAreaField(u'银行卡号', validators=[Required()])
-    xuexiao = TextAreaField(u'当前就读大学', validators=[Required()])
-    dianhua = TextAreaField(u'联系电话', validators=[Required()])
+    xingming = TextAreaField(u'姓名', [DataRequired()])
+    shenfenzheng = TextAreaField(u'身份证号', [DataRequired()])
+    kahao = TextAreaField(u'银行卡号', [DataRequired()])
+    banji = SelectField(u'毕业所在班级', choices=[('14w1', u'14微机一班'), ('14w2', u'14微机二班'), ('14w3', u'14微机三班')])
+    xuexiao = TextAreaField(u'当前就读大学', [DataRequired()])
+    zhuanye = TextAreaField(u'大学所学专业', [DataRequired()])
+    yuke = BooleanField(u'是否大学预科')
+    dianhua = TextAreaField(u'联系电话', [DataRequired()])
 
     submit = SubmitField('Submit')
